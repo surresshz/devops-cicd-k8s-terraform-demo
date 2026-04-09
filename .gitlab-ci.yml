@@ -1,0 +1,14 @@
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  script:
+    - docker build -t devops-app .
+    - docker tag devops-app surresshz/devops-app:latest
+
+deploy:
+  stage: deploy
+  script:
+    - kubectl apply -f k8s/
